@@ -84,7 +84,7 @@ aws-multi-agent-system/
 ### 🔗 **Medium**
 
 **Building an Intelligent AWS Multi-Agent System Using LangGraph, OpenAI, LangChain, and FastAPI**
-[https://medium.com/@princeakash](https://medium.com/@princeakash)
+https://medium.com/@prince2025akash/building-an-intelligent-aws-multi-agent-system-using-langgraph-openai-langchain-and-fastapi-aed0bc6f1fcb
 
 ### 🔗 **Hashnode**
 
