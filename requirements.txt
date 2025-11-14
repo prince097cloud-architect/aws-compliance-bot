@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+boto3
+langchain
+langgraph
+pydantic
+python-dotenv
+requests
+openai
+langchain-openai
+langchain-core
+langchain-community
+# langchain-memory
+# langchain-chains

@@ -1,0 +1,305 @@
+import logging
+import os
+from logging.handlers import RotatingFileHandler
+
+LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
+LOG_FILE = os.path.join(LOG_DIR, "aws_agents.log")
+
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Configure logger
+logger = logging.getLogger("aws_agents")
+logger.setLevel(logging.INFO)
+
+handler = RotatingFileHandler(LOG_FILE, maxBytes=5_000_000, backupCount=3)
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
+
+def log_action(message: str):
+    """Write a log entry to the rolling log file and print to console."""
+    logger.info(message)
+    print(message)
+2025-11-12 22:20:09,706 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-12 22:20:10,649 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.05%) — terminating.
+2025-11-12 22:20:10,649 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-12 22:20:51,649 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-12 22:20:52,060 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.05%) — terminating.
+2025-11-12 22:20:52,063 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 08:41:00,987 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 08:41:02,758 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.03%) — terminating.
+2025-11-13 08:41:02,758 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 08:45:42,290 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 08:45:42,997 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.03%) — terminating.
+2025-11-13 08:45:42,998 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 08:53:35,594 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 08:53:59,086 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 09:21:02,839 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 09:21:06,505 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.04%) — terminating.
+2025-11-13 09:21:06,506 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 09:21:43,073 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 09:23:58,964 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 09:23:58,972 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 09:23:58,972 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 09:24:01,792 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.04%) — terminating.
+2025-11-13 09:24:01,792 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 09:24:01,797 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 09:25:10,916 INFO [MasterAgent] Received master prompt: Run ec2 audit
+2025-11-13 09:25:10,947 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 09:25:10,947 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 09:25:11,412 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.04%) — terminating.
+2025-11-13 09:25:11,412 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 09:25:11,413 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 09:25:28,018 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 09:25:28,319 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.04%) — terminating.
+2025-11-13 09:25:28,319 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 09:26:26,807 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 09:26:27,288 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 0.00%) — terminating.
+2025-11-13 09:26:27,288 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 09:26:27,361 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.04%) — terminating.
+2025-11-13 09:26:27,362 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 18:55:38,562 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 18:55:38,644 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 18:55:38,644 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 18:55:39,427 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 18:55:39,427 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 18:55:39,663 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 18:55:39,663 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 18:55:39,665 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:03:46,301 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 19:03:46,305 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:03:46,306 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:03:46,924 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 19:03:46,924 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:03:47,092 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:03:47,092 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:03:47,094 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:03:47,794 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:03:47,825 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:03:47,826 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:03:47,828 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:05:36,093 INFO [MasterAgent] Received master prompt: Audit my AWS resources
+2025-11-13 19:05:36,096 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:05:36,096 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:05:36,627 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 19:05:36,627 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:05:36,677 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:05:36,677 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:05:36,678 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:05:37,319 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:05:37,358 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:05:37,358 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:05:37,359 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:05:37,649 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:05:50,885 INFO [MasterAgent] ✅ Multi-agent AWS audit complete
+2025-11-13 19:06:40,420 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:06:40,503 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:06:40,504 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:06:59,905 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:09:24,962 INFO [MasterAgent] Received master prompt: What is up with my aws resources?
+2025-11-13 19:09:24,976 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:09:24,976 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:09:25,458 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 19:09:25,458 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:09:25,511 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:09:25,511 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:09:25,511 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:09:26,260 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:09:26,300 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:09:26,300 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:09:26,300 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:09:26,543 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:09:35,789 INFO [MasterAgent] ✅ Multi-agent AWS audit complete
+2025-11-13 19:11:00,534 INFO [MasterAgent] Received master prompt: check+only+EC2+instances
+2025-11-13 19:11:00,548 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:11:00,549 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:11:04,109 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 19:11:04,110 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:11:04,159 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:11:04,159 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:11:04,160 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:11:04,786 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:11:04,819 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:11:04,819 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:11:04,819 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:11:05,085 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:11:17,381 INFO [MasterAgent] ✅ Multi-agent AWS audit complete
+2025-11-13 19:12:58,535 INFO [MasterAgent] Received master prompt: check+only+EC2+instances
+2025-11-13 19:12:58,543 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:12:58,543 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:12:59,097 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 19:12:59,098 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:12:59,154 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:12:59,155 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:12:59,155 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:13:00,064 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:13:00,100 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:13:00,100 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:13:00,101 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:13:00,627 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:13:02,352 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:13:07,170 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:13:10,453 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:13:10,492 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:13:10,493 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:13:11,161 INFO [MasterAgent] ✅ Multi-agent AWS audit complete
+2025-11-13 19:19:14,194 INFO [MasterAgent] Received master prompt: check+only+EC2+instances
+2025-11-13 19:19:14,207 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:19:14,208 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:19:17,858 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.62%) — terminating.
+2025-11-13 19:19:17,858 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:19:17,900 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:19:17,900 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:19:17,901 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:19:18,567 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:19:18,601 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:19:18,601 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:19:18,602 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:19:18,900 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:19:30,427 INFO [MasterAgent] ✅ Multi-agent AWS audit complete
+2025-11-13 19:19:37,207 INFO [MasterAgent] Received master prompt: check+only+EC2+instances
+2025-11-13 19:19:37,212 INFO [MasterAgent] Running EC2 Agent via LangGraph
+2025-11-13 19:19:37,212 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:19:37,587 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.62%) — terminating.
+2025-11-13 19:19:37,587 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:19:37,639 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:19:37,639 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:19:37,640 INFO [MasterAgent] Running S3 Agent via LangGraph
+2025-11-13 19:19:38,316 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:19:38,346 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:19:38,346 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:19:38,347 INFO [MasterAgent] Running KMS Agent via LangGraph
+2025-11-13 19:19:38,542 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 19:19:46,819 INFO [MasterAgent] ✅ Multi-agent AWS audit complete
+2025-11-13 19:20:14,310 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:20:14,344 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:20:14,344 INFO [actions] ✅ Completed S3 audit.
+
+
+2025-11-13 19:24:49,326 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Check my ec2 only
+2025-11-13 19:24:52,898 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': False, 'run_kms': False, 'reason': 'The user specifically requested to check only EC2 resources.'}
+2025-11-13 19:24:52,898 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:24:53,367 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.62%) — terminating.
+2025-11-13 19:24:53,367 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:24:53,414 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:24:53,415 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+
+2025-11-13 19:29:05,875 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Audit S3 buckets for public access
+2025-11-13 19:37:14,137 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: check only s3
+2025-11-13 19:37:15,904 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': False, 'run_s3': True, 'run_kms': False, 'reason': 'User requested to check only S3'}
+2025-11-13 19:37:19,867 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:37:19,910 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:37:19,910 INFO [actions] ✅ Completed S3 audit.
+
+
+2025-11-13 19:41:09,348 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: check only s3
+2025-11-13 19:41:11,451 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': False, 'run_s3': True, 'run_kms': False, 'reason': 'User requested to check only S3'}
+2025-11-13 19:41:12,487 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:41:12,521 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:41:12,521 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:41:35,975 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: check only kms and s3
+2025-11-13 19:41:39,683 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': False, 'run_s3': True, 'run_kms': True, 'reason': 'User requested to check only kms and s3'}
+2025-11-13 19:41:40,365 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:41:40,403 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:41:40,404 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 19:41:40,683 INFO [actions] ✅ Completed KMS audit.
+
+2025-11-13 19:43:15,646 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Check EC2 idle instances and S3 versioning
+2025-11-13 19:43:21,047 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': True, 'run_kms': False, 'reason': 'User requests checks on EC2 idle instances and S3 versioning'}
+2025-11-13 19:43:21,047 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 19:43:21,563 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.65%) — terminating.
+2025-11-13 19:43:21,563 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 19:43:21,623 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.02%) — terminating.
+2025-11-13 19:43:21,624 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 19:43:22,296 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 19:43:22,335 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 19:43:22,336 INFO [actions] ✅ Completed S3 audit.
+
+
+2025-11-13 20:04:41,806 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Do nothing right now
+2025-11-13 20:04:47,270 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': False, 'run_s3': False, 'run_kms': False, 'reason': 'User requested to do nothing'}
+
+
+2025-11-13 20:05:43,391 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Skip KMS
+2025-11-13 20:05:45,516 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': True, 'run_kms': False, 'reason': 'User requested to skip KMS'}
+2025-11-13 20:05:45,518 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 20:05:49,641 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 20:05:49,674 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 20:05:49,675 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 20:05:49,747 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 20:05:49,748 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 20:05:49,801 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.01%) — terminating.
+2025-11-13 20:05:49,801 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 20:05:50,201 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 20:05:50,238 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 20:05:50,238 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 20:15:12,895 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 20:16:48,526 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Audit my AWS resources
+2025-11-13 20:16:50,371 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': True, 'run_kms': True, 'reason': 'All resources are relevant for a comprehensive audit.'}
+2025-11-13 20:16:50,372 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 20:16:50,971 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 20:16:50,971 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 20:16:51,099 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.01%) — terminating.
+2025-11-13 20:16:51,100 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 20:16:51,994 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 20:16:52,036 INFO [AWSHelpers] [DRY_RUN] Would block public access for stale-bucket-dem01
+2025-11-13 20:16:52,037 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 20:16:52,307 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 20:25:51,860 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 20:25:52,451 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.63%) — terminating.
+2025-11-13 20:25:52,451 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 20:25:52,538 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.01%) — terminating.
+2025-11-13 20:25:52,539 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 20:26:21,187 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Stop all idle ec2 for my aws
+2025-11-13 20:26:23,279 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': False, 'run_kms': False, 'reason': 'User requested to stop idle EC2 instances'}
+2025-11-13 20:26:23,279 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 20:26:23,585 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.91%) — terminating.
+2025-11-13 20:26:23,586 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 20:26:23,643 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.01%) — terminating.
+2025-11-13 20:26:23,643 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 20:33:22,261 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Stop all idle ec2 for my aws
+2025-11-13 20:33:25,262 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': False, 'run_kms': False, 'reason': 'User requested to stop idle EC2 instances'}
+2025-11-13 20:33:25,263 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 20:33:25,704 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.71%) — terminating.
+2025-11-13 20:33:25,704 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-08312094635d508cd
+2025-11-13 20:33:25,783 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.01%) — terminating.
+2025-11-13 20:33:25,784 INFO [AWSHelpers] [DRY_RUN] Would terminate instance i-062771fdae7de7afd
+2025-11-13 20:39:23,553 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Audit my AWS resources
+2025-11-13 20:39:28,998 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': True, 'run_kms': True, 'reason': 'All resources may contain audit information.'}
+2025-11-13 20:39:28,998 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 20:39:29,568 INFO [EC2Agent] 🧊 Instance def (i-08312094635d508cd) idle (CPU 3.67%) — terminating.
+2025-11-13 20:39:29,984 INFO [AWSHelpers] Instance i-08312094635d508cd terminated successfully.
+2025-11-13 20:39:30,041 INFO [EC2Agent] 🧊 Instance abc (i-062771fdae7de7afd) idle (CPU 3.01%) — terminating.
+2025-11-13 20:39:30,497 INFO [AWSHelpers] Instance i-062771fdae7de7afd terminated successfully.
+2025-11-13 20:39:31,149 INFO [actions] 🛑 Public access ENABLED for stale-bucket-dem01 — auto-fixing...
+2025-11-13 20:39:31,574 INFO [AWSHelpers] ✅ Blocked public access for stale-bucket-dem01
+2025-11-13 20:39:31,575 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 20:39:31,875 INFO [actions] ✅ Completed KMS audit.
+2025-11-13 20:41:57,280 INFO [actions] 🛑 Public access ENABLED for damaged-bucket-1 — auto-fixing...
+2025-11-13 20:41:58,156 INFO [AWSHelpers] ✅ Blocked public access for damaged-bucket-1
+2025-11-13 20:41:58,575 INFO [actions] ✅ Completed S3 audit.
+
+
+2025-11-13 20:45:01,271 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Optimize my s3 buckets only
+2025-11-13 20:45:06,786 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': False, 'run_s3': True, 'run_kms': False, 'reason': 'User requested optimization of S3 buckets only'}
+2025-11-13 20:45:10,322 INFO [actions] 🛑 Public access ENABLED for damaged-bucket-1 — auto-fixing...
+2025-11-13 20:45:10,787 INFO [AWSHelpers] ✅ Blocked public access for damaged-bucket-1
+2025-11-13 20:45:11,268 INFO [actions] ✅ Completed S3 audit.
+
+
+
+2025-11-13 20:58:08,607 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Only validate my s3 resource 
+2025-11-13 20:58:15,987 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': False, 'run_s3': True, 'run_kms': False, 'reason': 'User requested validation only for S3 resource'}
+2025-11-13 20:58:16,913 INFO [actions] ⚠️  Versioning disabled for damaged-bucket-1 — enabling...
+2025-11-13 20:58:17,285 INFO [AWSHelpers] Enabled versioning for damaged-bucket-1
+2025-11-13 20:58:17,672 INFO [actions] ⚠️  Versioning disabled for stale-bucket-dem01 — enabling...
+2025-11-13 20:58:18,120 INFO [AWSHelpers] Enabled versioning for stale-bucket-dem01
+2025-11-13 20:58:18,192 INFO [actions] ✅ Completed S3 audit.
+2025-11-13 22:25:16,537 INFO [MasterAgent] 🧠 MasterAgent Prompt Received: Clean up my ec2 resources
+2025-11-13 22:25:20,129 INFO [MasterAgent] 🤖 Router decision: {'run_ec2': True, 'run_s3': False, 'run_kms': False, 'reason': 'User requested cleanup of EC2 resources'}
+2025-11-13 22:25:20,131 INFO [EC2Agent] 🚀 EC2 Agent started scanning...
+2025-11-13 22:25:20,820 INFO [EC2Agent] 🧊 Instance my-damaged-ec2 (i-005a69764e73a2aac) idle (CPU 2.96%) — terminating.
+2025-11-13 22:25:21,195 INFO [AWSHelpers] Instance i-005a69764e73a2aac terminated successfully.
+2025-11-13 22:25:21,295 INFO [EC2Agent] 🧊 Instance my-damaged-ec2 (i-0f1e7389b8f55d2e6) idle (CPU 2.07%) — terminating.
+2025-11-13 22:25:21,648 INFO [AWSHelpers] Instance i-0f1e7389b8f55d2e6 terminated successfully.
